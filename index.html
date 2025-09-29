@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>1. Which programming language is closer to machine language?</h3>
+                <button class="answer">Python</button>
+                <button class="answer">Assembly</button>
+                <button class="answer">Java</button>
+                <p class="feedback" id="p1-feedback"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>2. In computer architecture, what does CPU stand for?</h3>
+                <input type="text" id="answertext" placeholder="Type your answer">
+                <button id="sendtext">Submit</button>
+                <p class="feedback" id="p2-feedback"></p>
+            </div>
+        </div>
+
+
+    </body>
+    <script>
+        const answers = document.querySelectorAll(".section:first-of-type .answer");
+        const feedback1 = document.getElementById("p1-feedback");
+
+        answers.forEach(btn => {
+            btn.addEventListener("click", () => {
+                if (btn.textContent === "Assembly") {
+                    btn.style.backgroundColor = "#28a745";
+                    feedback1.textContent = "Correct! ";
+                    feedback1.style.color = "#28a745";
+                } else {
+                    btn.style.backgroundColor = "#dc3545";
+                    feedback1.textContent = "Incorrect ";
+                    feedback1.style.color = "#dc3545";
+                }
+                answers.forEach(b => b.disabled = true);
+            });
+        });
+
+
+        const inputText = document.getElementById("answertext");
+        const sendBtn = document.getElementById("sendtext");
+        const feedback2 = document.getElementById("p2-feedback");
+
+        sendBtn.addEventListener("click", () => {
+            const answer = inputText.value.trim().toLowerCase();
+            if (answer === "central processing unit") {
+                inputText.style.backgroundColor = "#28a745";
+                feedback2.textContent = "Correct! ";
+                feedback2.style.color = "#28a745";
+            } else {
+                inputText.style.backgroundColor = "#dc3545";
+                feedback2.textContent = "Incorrect ";
+                feedback2.style.color = "#dc3545";
+            }
+            inputText.disabled = true;
+            sendBtn.disabled = true;
+        });
+    </script>
+
+</html>
